@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   server: {
     proxy: {
-      '/api': 'http://localhost:8010',
+      '/api': 'https://dataguardian-ai-backend.onrender.com',
     },
   },
 })
