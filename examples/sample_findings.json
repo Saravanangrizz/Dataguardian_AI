@@ -1,0 +1,105 @@
+{
+  "reliability_findings": [
+    {
+      "type": "reliability",
+      "severity": "critical",
+      "urn": "urn:li:dataset:(finance.quarterly_revenue)",
+      "name": "finance.quarterly_revenue",
+      "title": "finance.quarterly_revenue is 2.4x past its expected refresh window",
+      "evidence": "Last modified 58h ago; expected refresh cadence is 24h (2.4x overdue).",
+      "confidence": 0.91,
+      "downstream": [
+        "urn:li:dashboard:(looker,exec_revenue_dashboard)"
+      ],
+      "reasoning": "Heuristic reasoning (no AI provider configured): findings below are derived from rule thresholds, not LLM inference. Set AI_PROVIDER + the matching API key to enable narrative reasoning.",
+      "reasoning_source": "heuristic",
+      "suggested_action": "investigate_pipeline"
+    },
+    {
+      "type": "reliability",
+      "severity": "critical",
+      "urn": "urn:li:dataset:(ml.churn_features)",
+      "name": "ml.churn_features",
+      "title": "ml.churn_features is 2.5x past its expected refresh window",
+      "evidence": "Last modified 30h ago; expected refresh cadence is 12h (2.5x overdue).",
+      "confidence": 0.93,
+      "downstream": [
+        "urn:li:dashboard:(looker,churn_risk_dashboard)"
+      ],
+      "reasoning": "Heuristic reasoning (no AI provider configured): findings below are derived from rule thresholds, not LLM inference. Set AI_PROVIDER + the matching API key to enable narrative reasoning.",
+      "reasoning_source": "heuristic",
+      "suggested_action": "investigate_pipeline"
+    },
+    {
+      "type": "reliability",
+      "severity": "critical",
+      "urn": "urn:li:dataFlow:(airflow,revenue_etl)",
+      "name": "revenue_etl",
+      "title": "Pipeline revenue_etl is failed",
+      "evidence": "Upstream schema change: column 'region_code' dropped from source.",
+      "confidence": 0.9,
+      "downstream": [
+        "urn:li:dataset:(finance.quarterly_revenue)"
+      ],
+      "reasoning": "Upstream schema change: column 'region_code' dropped from source.",
+      "reasoning_source": "rule",
+      "suggested_action": "review_pipeline_run"
+    },
+    {
+      "type": "reliability",
+      "severity": "high",
+      "urn": "urn:li:dataFlow:(airflow,churn_feature_pipeline)",
+      "name": "churn_feature_pipeline",
+      "title": "Pipeline churn_feature_pipeline is degraded",
+      "evidence": "Run time increased 4x over 7-day baseline; likely resource contention.",
+      "confidence": 0.7,
+      "downstream": [
+        "urn:li:dataset:(ml.churn_features)"
+      ],
+      "reasoning": "Run time increased 4x over 7-day baseline; likely resource contention.",
+      "reasoning_source": "rule",
+      "suggested_action": "review_pipeline_run"
+    }
+  ],
+  "governance_findings": [
+    {
+      "type": "governance",
+      "severity": "high",
+      "urn": "urn:li:dataset:(finance.quarterly_revenue)",
+      "name": "finance.quarterly_revenue",
+      "title": "finance.quarterly_revenue has no assigned owner",
+      "evidence": "Domain 'Finance', criticality HIGH.",
+      "confidence": 0.95,
+      "reasoning": "No owner blocks incident response: if this dataset breaks, nobody is paged and downstream teams find out from broken dashboards.",
+      "reasoning_source": "rule",
+      "suggested_action": "assign_owner",
+      "suggested_value": "finance-team@company.com"
+    },
+    {
+      "type": "governance",
+      "severity": "high",
+      "urn": "urn:li:dataset:(ml.churn_features)",
+      "name": "ml.churn_features",
+      "title": "ml.churn_features has no assigned owner",
+      "evidence": "Domain 'ML Platform', criticality HIGH.",
+      "confidence": 0.95,
+      "reasoning": "No owner blocks incident response: if this dataset breaks, nobody is paged and downstream teams find out from broken dashboards.",
+      "reasoning_source": "rule",
+      "suggested_action": "assign_owner",
+      "suggested_value": "ml-platform-team@company.com"
+    },
+    {
+      "type": "governance",
+      "severity": "medium",
+      "urn": "urn:li:dataset:(finance.quarterly_revenue)",
+      "name": "finance.quarterly_revenue",
+      "title": "finance.quarterly_revenue has no documentation",
+      "evidence": "Description field is empty in the catalog.",
+      "confidence": 0.9,
+      "reasoning": "Undocumented datasets slow down every downstream consumer who has to guess at meaning and reliability.",
+      "reasoning_source": "rule",
+      "suggested_action": "update_description",
+      "suggested_value": "Heuristic reasoning (no AI provider configured): findings below are derived from rule thresholds, not LLM inference. Set AI_PROVIDER + the matching API key to enable narrative reasoning."
+    }
+  ]
+}

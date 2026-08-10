@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #0b0e11;
+  --surface: #12161b;
+  --surface-raised: #171c22;
+  --hairline: #262b31;
+  --paper: #e8e6df;
+  --paper-dim: #a3a099;
+  --stamp-critical: #c4432b;
+  --stamp-high: #c98a2c;
+  --stamp-medium: #7d8a99;
+  --stamp-ok: #3e7c59;
+  --thread: #8a6a4f;
+}
+
+html, body, #root { height: 100%; }
+
+body {
+  background: var(--ink);
+  color: var(--paper);
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.font-display { font-family: 'Fraunces', Georgia, serif; font-optical-sizing: auto; }
+.font-mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+
+.perforated {
+  background-image: radial-gradient(circle, var(--hairline) 1px, transparent 1.2px);
+  background-size: 10px 1px;
+  background-repeat: repeat-x;
+  background-position: left center;
+  height: 1px;
+}
+
+.stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  padding: 0.15rem 0.5rem;
+  border: 1.5px solid currentColor;
+  border-radius: 3px;
+  transform: rotate(-1.5deg);
+  text-transform: uppercase;
+}
+
+::selection { background: var(--stamp-high); color: var(--ink); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}

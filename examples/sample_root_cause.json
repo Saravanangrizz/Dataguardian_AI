@@ -1,0 +1,27 @@
+{
+  "urn": "urn:li:dashboard:(looker,exec_revenue_dashboard)",
+  "chain": [
+    {
+      "urn": "urn:li:dashboard:(looker,exec_revenue_dashboard)",
+      "label": "Executive Revenue Dashboard",
+      "note": null
+    },
+    {
+      "urn": "urn:li:dataset:(finance.quarterly_revenue)",
+      "label": "finance.quarterly_revenue",
+      "note": "last modified 2026-07-21T14:00:00+00:00"
+    },
+    {
+      "urn": "urn:li:dataFlow:(airflow,revenue_etl)",
+      "label": "revenue_etl",
+      "note": "Upstream schema change: column 'region_code' dropped from source."
+    },
+    {
+      "urn": "urn:li:dataset:(raw.sales_transactions)",
+      "label": "urn:li:dataset:(raw.sales_transactions)",
+      "note": null
+    }
+  ],
+  "explanation": "Heuristic reasoning (no AI provider configured): findings below are derived from rule thresholds, not LLM inference. Set AI_PROVIDER + the matching API key to enable narrative reasoning.",
+  "reasoning_source": "heuristic"
+}

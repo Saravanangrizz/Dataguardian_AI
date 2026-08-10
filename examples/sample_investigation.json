@@ -1,0 +1,82 @@
+{
+  "urn": "urn:li:dataset:(finance.quarterly_revenue)",
+  "entity_name": "finance.quarterly_revenue",
+  "stages": [
+    {
+      "agent": "Reliability Engineer",
+      "summary": "stale for 58h (2.4x expected refresh window); upstream pipeline 'revenue_etl' is failed: Upstream schema change: column 'region_code' dropped from source.",
+      "severity": "critical"
+    },
+    {
+      "agent": "Lineage Investigator",
+      "summary": "1 downstream, 1 upstream dependencies resolved",
+      "downstream": [
+        {
+          "urn": "urn:li:dashboard:(looker,exec_revenue_dashboard)",
+          "name": "Executive Revenue Dashboard",
+          "kind": "dashboard",
+          "resolved": true,
+          "viewers_last_30d": 142
+        }
+      ],
+      "upstream": [
+        {
+          "urn": "urn:li:dataFlow:(airflow,revenue_etl)",
+          "name": "revenue_etl",
+          "kind": "pipeline",
+          "resolved": true
+        }
+      ]
+    },
+    {
+      "agent": "Governance Officer",
+      "summary": "no assigned owner; no documentation"
+    },
+    {
+      "agent": "Business Impact Advisor",
+      "summary": "Heuristic reasoning (no AI provider configured): findings below are derived from rule thresholds, not LLM inference. Set AI_PROVIDER + the matching API key to enable narrative reasoning."
+    },
+    {
+      "agent": "Executive Summary",
+      "summary": "Heuristic reasoning (no AI provider configured): findings below are derived from rule thresholds, not LLM inference. Set AI_PROVIDER + the matching API key to enable narrative reasoning."
+    }
+  ],
+  "timeline": [
+    {
+      "when_hours_ago": 58.0,
+      "label": "'finance.quarterly_revenue' last modified"
+    },
+    {
+      "when_hours_ago": null,
+      "label": "Depends on upstream: revenue_etl"
+    },
+    {
+      "when_hours_ago": null,
+      "label": "Stale for 58h (2.4x expected refresh window)"
+    },
+    {
+      "when_hours_ago": null,
+      "label": "Upstream pipeline 'revenue_etl' is failed: upstream schema change: column 'region_code' dropped from source."
+    },
+    {
+      "when_hours_ago": 0,
+      "label": "AI investigation completed"
+    }
+  ],
+  "remediation_plan": [
+    {
+      "action": "assign_owner",
+      "label": "Assign owner",
+      "value": "finance-team@company.com",
+      "urn": "urn:li:dataset:(finance.quarterly_revenue)"
+    },
+    {
+      "action": "update_description",
+      "label": "Add documentation",
+      "value": "finance.quarterly_revenue \u2014 auto-drafted description pending review.",
+      "urn": "urn:li:dataset:(finance.quarterly_revenue)"
+    }
+  ],
+  "business_impact": "Heuristic reasoning (no AI provider configured): findings below are derived from rule thresholds, not LLM inference. Set AI_PROVIDER + the matching API key to enable narrative reasoning.",
+  "executive_summary": "Heuristic reasoning (no AI provider configured): findings below are derived from rule thresholds, not LLM inference. Set AI_PROVIDER + the matching API key to enable narrative reasoning."
+}
