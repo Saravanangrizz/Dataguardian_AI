@@ -154,27 +154,24 @@ guessed from docs that can drift between DataHub versions. To connect it:
    comments in `write_owner`/`write_tags`) so approving a remediation
    doesn't silently wipe out owners/tags a human already set in the UI.
 
-**Two things worth knowing before you rely on this against your live instance:**
+## 🎬 Live Demo Environment
 
-- **It fails fast, not silently.** Two real bugs surfaced while wiring
-  this up, both fixed: the SDK's default timeout/retry settings
-  (`timeout_sec=None`, `retry_max_times=None`) retry indefinitely on a
-  connection failure — confirmed by testing against a dead port, which
-  hung rather than erroring — so this client sets explicit `timeout_sec=10,
-  retry_max_times=1`. Separately, the SDK's `list_all_entity_urns`
-  swallows connection/auth errors internally and returns `None` rather
-  than raising, which would otherwise present "0 datasets" as a clean,
-  empty catalog instead of a broken connection — this client checks for
-  that `None` and raises explicitly instead.
-- **What you get for free vs. what needs mapping:** ownership,
-  documentation, and tag/PII-tag gaps are read directly from real
-  DataHub fields, so those findings are accurate against your instance
-  immediately. Staleness/freshness and pipeline-health findings depend
-  on concepts DataHub has no single native field for
-  (`expected_freshness_hours`, `criticality`, pipeline `last_run_status`)
-  — `_map_dataset_sync` in `datahub_client.py` currently defaults these
-  rather than guessing wrong. Wire them to a DataHub Structured Property
-  or your ingestion pipeline's own signals for real values.
+The hackathon demonstration uses a live DataHub instance containing
+three independent data environments:
+
+- Healthcare
+- Fiction Retail
+- NYC Taxi
+
+DataGuardian AI automatically discovers these datasets through the
+DataHub metadata graph without dataset-specific configuration.
+
+As datasets and metadata are added or remediated, the organization
+health score is recalculated dynamically.
+
+## 🎥 Demo
+
+[Watch the 3-Minute DataGuardian AI Demo](https://youtu.be/ubAwzdVzjYw)
 
 ## What's in `examples/`
 
