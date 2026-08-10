@@ -69,7 +69,7 @@ export default function App() {
 
       {loadError && (
         <div className="mx-8 mt-6 border border-[var(--stamp-critical)] text-[var(--stamp-critical)] rounded-sm px-4 py-3 font-mono text-sm">
-          Could not reach the backend at /api. Is `uvicorn app.main:app` running on port 8010?
+          Could not reach the DataGuardian backend. Please check that the API service is running.
         </div>
       )}
 
