@@ -4,6 +4,7 @@ pydantic>=2.7
 pydantic-settings>=2.3
 httpx>=0.27              # used by scripts/check_live_connection.py (raw GraphQL preflight, independent of the SDK below)
 acryl-datahub>=0.15      # official DataHub SDK -- used by LiveDataHubClient (DATAHUB_MODE=live)
+google-genai==2.17.0
 # graphql-core>=3.2        # optional: enables execute_graphql's strip_unsupported_fields
 #                          # cross-version safety net (used by get_lineage). Works fine without
 #                          # it too -- just skips that extra defensive step and logs a notice.
